@@ -51,3 +51,47 @@ function renderApp() {
             </div>`;
         return; 
     }}
+
+
+    for (let i = 0; i < jobsToShow.length; i++) {
+        let job = jobsToShow[i]; 
+        
+        let badgeText = "NOT APPLIED";
+        let badgeClass = "bg-blue-50 text-blue-600";
+        if (job.status === "interview") {
+            badgeText = "INTERVIEW";
+            badgeClass = "bg-green-50 text-green-700";
+        } else if (job.status === "rejected") {
+            badgeText = "REJECTED";
+            badgeClass = "bg-red-50 text-red-700";
+        }
+
+        const btnIntClass = job.status === 'interview' ? 'bg-green-600 text-white border-green-600' : 'bg-white text-green-600 border-green-600 hover:bg-green-50';
+        const btnRejClass = job.status === 'rejected' ? 'bg-red-600 text-white border-red-600' : 'bg-white text-red-600 border-red-600 hover:bg-red-50';
+
+        const card = document.createElement("div");
+        card.className = "bg-white p-5 rounded-lg shadow-sm border border-gray-100 relative";
+        
+
+        card.innerHTML = `
+            <div class="flex justify-between items-start mb-3">
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900">${job.companyName}</h3>
+                    <p class="text-sm text-gray-500 mt-1">${job.position}</p>
+                </div>
+                <button class="delete-btn text-gray-300 hover:text-red-500 text-xl" data-id="${job.id}">🗑️</button>
+            </div>
+            <div class="flex flex-wrap gap-4 text-xs text-gray-600 mb-4">
+                <span>  ${job.location}</span>
+                <span>• ${job.type}</span>
+                <span>• ${job.salary}</span>
+            </div>
+            <span class="inline-block px-2 py-1 rounded text-xs font-bold mb-4 ${badgeClass}">${badgeText}</span>
+            <p class="text-sm text-gray-600 mb-5 leading-relaxed">${job.description}</p>
+            <div class="flex gap-3">
+                <button class="status-btn px-4 py-1.5 border rounded text-xs font-bold transition-colors ${btnIntClass}" data-action="interview" data-id="${job.id}">INTERVIEW</button>
+                <button class="status-btn px-4 py-1.5 border rounded text-xs font-bold transition-colors ${btnRejClass}" data-action="rejected" data-id="${job.id}">REJECTED</button>
+            </div>
+        `;
+        container.appendChild(card);
+    }
