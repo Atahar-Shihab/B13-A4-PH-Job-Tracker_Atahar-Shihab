@@ -47,7 +47,7 @@ function renderApp() {
         container.innerHTML = `
             <div class="text-center py-16 px-5 bg-white rounded-lg border border-gray-100 shadow-sm">
                 <h3 class="text-xl font-bold text-blue-900 mb-2">No jobs available</h3>
-                <p class="text-gray-500 text-sm">Check back later for new job opportunities</p>
+                <p class="text-gray-500 text-sm">Check back soon for new job opportunities</p>
             </div>`;
         return; 
     }}
@@ -115,4 +115,50 @@ function renderApp() {
             renderApp();
         });
     }
+}
+
+function setupCardEvents() {
+    const jobContainer = document.getElementById('job-container');
+
+    jobContainer.addEventListener('click', function(e) {
+        
+      
+        const deleteBtn = e.target.closest('.delete-btn');
+        if (deleteBtn) {
+            e.stopPropagation(); 
+            
+            const jobId = parseInt(deleteBtn.getAttribute('data-id'));
+            
+            let updatedJobs = [];
+            for (let i = 0; i < jobs.length; i++) {
+                if (jobs[i].id !== jobId) {
+                    updatedJobs.push(jobs[i]); 
+                }
+            }
+            jobs = updatedJobs; 
+            
+            renderApp();
+            return; 
+        }
+
+        const statusBtn = e.target.closest('.status-btn');
+        if (statusBtn) {
+            e.stopPropagation(); 
+            
+            const jobId = parseInt(statusBtn.getAttribute('data-id'));
+            const newStatus = statusBtn.getAttribute('data-action');
+            
+            for (let i = 0; i < jobs.length; i++) {
+                if (jobs[i].id === jobId) {
+                    if (jobs[i].status === newStatus) {
+                        jobs[i].status = "none";
+                    } else {
+                        jobs[i].status = newStatus;
+                    }
+                    break; 
+                }
+            }
+            renderApp();
+        }
+    });
 }
