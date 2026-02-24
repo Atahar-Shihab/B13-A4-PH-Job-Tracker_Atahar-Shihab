@@ -9,7 +9,20 @@
 <body class="bg-gray-50 text-gray-800 p-5 font-sans">
     <div class="max-w-5xl mx-auto" id="app-wrapper">
         <h1 class="text-2xl font-bold text-blue-900 mb-6">Job Application Tracker</h1>
-        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                <p class="text-sm text-gray-500 mb-2">Total</p>
+                <h2 id="total-count" class="text-3xl font-bold text-blue-700">0</h2>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                <p class="text-sm text-gray-500 mb-2">Interview</p>
+                <h2 id="interview-count" class="text-3xl font-bold text-green-600">0</h2>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                <p class="text-sm text-gray-500 mb-2">Rejected</p>
+                <h2 id="rejected-count" class="text-3xl font-bold text-red-600">0</h2>
+            </div>
+        </div>
         </div>
     
     <script src="script.js"></script>
