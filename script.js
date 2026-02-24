@@ -95,3 +95,24 @@ function renderApp() {
         `;
         container.appendChild(card);
     }
+
+    function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    for (let i = 0; i < tabButtons.length; i++) {
+        let button = tabButtons[i];
+        
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            currentTab = this.getAttribute('data-tab');
+
+            for (let j = 0; j < tabButtons.length; j++) {
+                tabButtons[j].className = "tab-btn px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded text-sm transition-colors hover:bg-gray-50";
+            }
+            
+            this.className = "tab-btn px-4 py-2 border border-blue-700 bg-blue-700 text-white rounded text-sm transition-colors";
+            
+            renderApp();
+        });
+    }
+}
