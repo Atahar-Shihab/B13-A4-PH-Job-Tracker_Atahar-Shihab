@@ -162,3 +162,7 @@ function setupCardEvents() {
         }
     });
 }
+
+renderApp();
+setupTabs();
+setupCardEvents();
