@@ -11,3 +11,43 @@ let jobs = [
 
 let currentTab = "None";
 
+function renderApp() {
+    let interviewCount = 0;
+    let rejectedCount = 0;
+    
+    for (let i = 0; i < jobs.length; i++) {
+        if (jobs[i].status === "interview") {
+            interviewCount++;
+        } else if (jobs[i].status === "rejected") {
+            rejectedCount++;
+        }
+    }
+
+    document.getElementById("total-count").innerText = jobs.length;
+    document.getElementById("interview-count").innerText = interviewCount;
+    document.getElementById("rejected-count").innerText = rejectedCount;
+
+
+    let jobsToShow = [];
+    
+    for (let i = 0; i < jobs.length; i++) {
+        if (currentTab === "all") {
+            jobsToShow.push(jobs[i]);
+        } else if (jobs[i].status === currentTab) {
+            jobsToShow.push(jobs[i]);
+        }
+    }
+
+    document.getElementById("tab-job-count").innerText = jobsToShow.length;
+
+    const container = document.getElementById("job-container");
+    container.innerHTML = ""; 
+
+    if (jobsToShow.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-16 px-5 bg-white rounded-lg border border-gray-100 shadow-sm">
+                <h3 class="text-xl font-bold text-blue-900 mb-2">No jobs available</h3>
+                <p class="text-gray-500 text-sm">Check back later for new job opportunities</p>
+            </div>`;
+        return; 
+    }}
