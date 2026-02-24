@@ -82,7 +82,9 @@ function renderApp() {
                     <h3 class="text-lg font-bold text-blue-900">${job.companyName}</h3>
                     <p class="text-sm text-gray-500 mt-1">${job.position}</p>
                 </div>
-                <button class="text-gray-300 hover:text-red-500 text-xl cursor-pointer" onclick="deleteJob(${job.id})">🗑️</button>
+                <button class="text-gray-300 hover:text-red-500 text-xl cursor-pointer" onclick="deleteJob(${job.id})">
+    <i class="fa-regular fa-trash-can"></i>
+</button>
             </div>
             <div class="flex flex-wrap gap-4 text-xs text-gray-600 mb-4">
                 <span>  ${job.location}</span>
