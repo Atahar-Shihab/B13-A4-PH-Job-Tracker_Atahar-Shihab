@@ -9,7 +9,7 @@ let jobs = [
     { id: 8, companyName: "TechCorp", position: "Frontend Developer", location: "San Francisco", type: "Full-time", salary: "$140k - $170k", description: "Lead scalable web applications using React and TypeScript for enterprise clients.", status: "none" }
 ];
 
-let currentTab = "None";
+let currentTab = "all";
 
 function renderApp() {
 
